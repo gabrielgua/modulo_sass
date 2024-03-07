@@ -1,0 +1,88 @@
+@use 'config/reset';
+@use 'config/var';
+@use 'sass:math';
+
+
+@mixin elementoForm($padding: .5rem) {
+    padding: $padding;
+    border: none;
+}
+
+@function pixelToEm($pixelTarget, $pixel: 16px) {
+    @return math.div($pixelTarget, $pixel)+em;
+}
+
+body {
+    background-color: #EEE;
+}
+
+.container {
+    width: min(1024px, 100% - 2rem);
+    margin-inline: auto;
+}
+
+header {
+    padding-block: 1rem;
+    background-color: var.$clr-primary;
+    text-align: center;
+    color: white;
+}
+
+.form-container {
+    height: calc(100vh - 70px);
+    width: min(760px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    h2 {
+        font-size: 3em;
+        text-align: center;
+    }
+
+    form {
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        width: min(500px, 100% - 4rem);
+
+        label {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        input {
+            @include elementoForm();
+
+            background-color: transparent;
+            border-block-end: 2px solid var.$clr-primary;
+        }
+
+        button {
+            @include elementoForm(1rem);
+            background-color: var.$clr-secondary;
+            border: 1px solid var.$clr-bg;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+
+            &:hover {
+                background-color: darken($color: var.$clr-secondary, $amount: 1%);
+            }
+
+        }
+
+    }
+}
+
+
+
